@@ -1,0 +1,32 @@
+Sum of Multiples:
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+class SumOfMultiples {
+    int number;
+    int[] set;
+    int sum = 0;
+    SumOfMultiples(int number, int[] set) {
+        List<Integer> list = new ArrayList<>();
+        this.number = number;
+        this.set = set;
+        for (int i : set) {
+            if (i == 0) {
+                continue;
+            }
+            for (int j = i; j < number; j += i) {
+                list.add(j);
+            }
+        }
+        List<Integer> listWithoutDuplicates = list.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        for (int k : listWithoutDuplicates) {
+            sum += k;
+        }
+    }
+    int getSum() {
+        return sum;
+    }
+}
